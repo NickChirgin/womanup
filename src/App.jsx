@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import Task from './components/Task'
+import TaskList from './components/TaskList'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Task />
+    <TaskList/>
   )
 }
 

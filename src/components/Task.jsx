@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react"
-import { collection, doc, setDoc, getDocs, query } from "firebase/firestore"; 
+import UpdateTask from './UpdateTask'
+import { useState } from 'react'
 
-import { db } from "../firebase";
-
-
-const Task = () => {
-  const [data, setData] = useState([])
+const Task = ({title, description, id, date}) => {
   const [active, setActive] = useState(false)
-  useEffect(() => {
-    void async function fetchTasks() {
-      let result = []
-      const tasks = await getDocs(collection(db, "tasks"))
-      tasks.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        setData(prev => ([...prev, doc.data()]))
-      })    
-    }()
-    console.log(data)
-  }, [])
+  const clickHandler = () => {
+    setActive(prev => !prev)
+  }
   return (
-    <>
-      <p>123</p>
-      {data.map(task => 
-      <div key={task.title}>
-        <p>{task.title}</p>
-        <p>{task.description}</p>
-        <button>change</button>
-      </div>)}
-      </>
+    active ? <UpdateTask title={title} description={description} id={id} clickHandler={clickHandler}/> : 
+    <div>
+        <p>{title}</p>
+        <p>{description}</p>
+        <p>{date}</p>
+        <button onClick={clickHandler}>change</button>
+    </div>
   )
 }
 
