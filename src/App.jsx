@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import TaskList from './components/TaskList'
-import './App.css'
+import NewTask from './components/NewTask/NewTask'
+import './App.less'
 
 function App() {
 
   return (
-    <TaskList/>
+    <>
+    <NewTask />
+    <TaskList />
+    </>
   )
 }
 
