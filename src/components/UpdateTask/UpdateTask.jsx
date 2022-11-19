@@ -9,7 +9,7 @@ const UpdateTask = ({title, description, date, id, clickHandler}) => {
   const handleUpdate = async () => {
     const currentTask = doc(db, 'tasks', id)
     await updateDoc(currentTask, {
-        // ...task,
+        ...task,
         title: task.title,
         description: task.description,
         date: Timestamp.fromDate(new Date(task.date))
